@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+    <title>Todo List</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Todo List</h1>
+        <div class="row">
+            <div class="col">
+                <div id="todo">
+                    <div class="input-group pr-3 mb-3">
+                        <input type="text" name="todo" class="form-control" v-model="todo" v-on:keyup.enter="addTodo" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" @click="addTodo">Add to List</button>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <h4>Todo</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item custom-control custom-checkbox" v-for="(item, key) in todoList"
+                                v-if="!item.checked">
+                                <input class="custom-control-input" type="checkbox" :id="key" v-model="item.checked" @change="updateTodo"/>
+                                <label class="custom-control-label" :for="key">{{ item.todo }}</label>
+                                <button class="btn btn-primary float-right" type="button" @click="removeTodo(key)">Remove</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Done</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item custom-control custom-checkbox" v-for="(item, key) in todoList"
+                                v-if="item.checked">
+                                <input class="custom-control-input" type="checkbox" :id="key" v-model="item.checked" disabled/>
+                                <label class="custom-control-label" :for="key">{{ item.todo }}</label>
+                                <button class="btn btn-primary float-right" type="button" @click="removeTodo(key)">Remove</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <script src="todo.js"></script>
+</body>
+
+</html>

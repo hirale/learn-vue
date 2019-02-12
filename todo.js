@@ -6,20 +6,24 @@ var todo = new Vue({
     },
     methods: {
         addTodo: function () {
-            if (this.todo){
+            if (this.todo) {
                 todoItem = {
                     todo: this.todo,
                     checked: false,
                 }
-            } else{
+            } else {
                 return false;
-            }         
+            }
             this.todoList.push(todoItem);
             this.saveToLocalStorage();
             this.todo = '';
         },
         removeTodo: function (key) {
             this.todoList.splice(key, 1);
+            this.saveToLocalStorage();
+        },
+        resetTodo: function (key) {
+            this.todoList[key].checked = false;
             this.saveToLocalStorage();
         },
         updateTodo: function () {
@@ -30,7 +34,12 @@ var todo = new Vue({
         }
     },
     mounted: function () {
-        this.todoList = JSON.parse(localStorage.getItem('todoList'));
+        todoLocal = localStorage.getItem('todoList');
+        if (todoLocal) {
+            this.todoList = JSON.parse(todoLocal);
+        } else {
+            this.todoList = [];
+        }
     }
 
 })

@@ -27,9 +27,10 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item custom-control custom-checkbox" v-for="(item, key) in todoList"
                                 v-if="!item.checked">
-                                <input class="custom-control-input" type="checkbox" :id="key" v-model="item.checked" @change="updateTodo"/>
+                                <input class="custom-control-input" type="checkbox" :id="key" v-model="item.checked"
+                                    @change="updateTodo" />
                                 <label class="custom-control-label" :for="key">{{ item.todo }}</label>
-                                <button class="btn btn-primary float-right" type="button" @click="removeTodo(key)">Remove</button>
+                                <button class="btn btn-danger float-right" type="button" @click="removeTodo(key)">Remove</button>
                             </li>
                         </ul>
                     </div>
@@ -38,9 +39,11 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item custom-control custom-checkbox" v-for="(item, key) in todoList"
                                 v-if="item.checked">
-                                <input class="custom-control-input" type="checkbox" :id="key" v-model="item.checked" disabled/>
+                                <input class="custom-control-input" type="checkbox" :id="key" v-model="item.checked"
+                                    disabled />
                                 <label class="custom-control-label" :for="key">{{ item.todo }}</label>
-                                <button class="btn btn-primary float-right" type="button" @click="removeTodo(key)">Remove</button></li>
+                                <button class="btn btn-danger float-right" type="button" @click="removeTodo(key)">Remove</button>
+                                <button class="btn btn-primary float-right mr-2" type="button" @click="resetTodo(key)">Reset</button></li>
                         </ul>
                     </div>
                 </div>
